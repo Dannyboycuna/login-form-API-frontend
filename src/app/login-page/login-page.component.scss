@@ -1,0 +1,32 @@
+.workSpace {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  background-color: antiquewhite;
+  width: 50%;
+  height: auto;
+
+  form {
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+
+    input {
+      width: 50%;
+      text-align: center;
+    }
+
+    button{
+      background-color: aquamarine;
+      width: 35%;
+      height: 1.4rem;
+      cursor: pointer;
+      a{
+        width: 100%;
+      }
+    }
+  }
+  .error{
+    background-color: red;
+  }
+}

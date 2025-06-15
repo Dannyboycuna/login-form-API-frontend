@@ -1,0 +1,30 @@
+<section class="workSpace">
+  <h3>Sign in</h3>
+
+  <form [formGroup]="form">
+    <!----------------username---------------->
+    <p class="error">@if (form.get('username')?.hasError('required') && form.get('username')?.touched) {Enter username.}
+    </p>
+    <p class='error'>@if (form.get('username')?.hasError('minlength') && form.get('username')?.touched) {Username must
+      have
+      at least 3 letters!} </p>
+    <input type="text" placeholder="username" formControlName="username">
+
+    <!------------------Email--------------------->
+    <p class="error">@if (form.get('email')?.hasError('required') && form.get('email')?.touched) {Please, enter email.}
+    </p>
+    <p class="error">@if (form.get('email')?.hasError('email') && form.get('email')?.touched) {Invalid email} </p>
+    <input type="email" id="email" placeholder="email" formControlName="email">
+
+    <!------------------password---------------------->
+    <p class="error">@if (form.get('password')?.hasError('required') && form.get('password')?.touched) {Enter your
+      password!}</p>
+    <p class="error">@if (form.get('password')?.hasError('minlength') && form.get('password')?.touched){Password too
+      low.}</p>
+    <input type="text" placeholder="password" formControlName="password">
+
+
+    <p><button type="submit" [disabled]="form.invalid" (click)="newUserFunction()">Sign in</button></p>
+    <p> <a [routerLink]="['/']" ><button>Log in</button></a></p>
+  </form>
+</section>

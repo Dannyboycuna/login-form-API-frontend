@@ -1,0 +1,27 @@
+<section class="workSpace">
+  <h1>Hello</h1>
+
+  <table border="2">
+    <thead>
+      <tr>
+        <th>Nr</th>
+        <th>Username</th>
+        <th>email</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of getUsers;index as index">
+        <td id="index">{{index+1}} </td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>      
+        <td id="option"><button (click)="optionDelete(index)">Options</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  
+
+</section>

@@ -1,0 +1,16 @@
+<section class="workSpace">
+  <h3>Login</h3>
+  
+  <form [formGroup]="form">
+    <p class="error">@if (form.get('username')?.hasError('required') && form.get('username')?.touched) {Please, enter username.} </p>
+    <p class="error">@if (form.get('email')?.hasError('minlength') && form.get('username')?.touched) {Invalid username} </p>
+     <input type="text" id="username" placeholder="username" formControlName="username">
+
+     <!------------------password---------------------->
+     <p class="error">@if (form.get('password')?.hasError('required') && form.get('password')?.touched) {Enter your password!}</p>
+     <p class="error">@if (form.get('password')?.hasError('minlength') && form.get('password')?.touched){Password too low.}</p>
+    <input type="text" placeholder="password" formControlName="password">
+    <p><button type="submit" [disabled]="form.invalid" (click)="login()">Log in</button></p>
+    <a [routerLink]="['/newuser']"> <button>Sign in</button></a>
+  </form>
+</section>
