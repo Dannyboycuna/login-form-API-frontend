@@ -1,8 +1,7 @@
 import express, { Router } from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/user.route.ts'
-import cors from 'cors';//enable to use in different ports
-
+import cors from "cors";
 
 const app = express();
 app.use(cors());

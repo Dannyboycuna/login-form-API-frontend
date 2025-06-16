@@ -2,8 +2,25 @@ import { Request, Response } from 'express';
 import { User, UserModel } from '../models/user.model.ts';
 import jwt from 'jsonwebtoken';
 
+const SECRET = process.env.JWT_SECRET || 'default_secret';
 
-export const getAll = async (_req: Request, res: Response) => {
+export const verifyToken = (req: Request, res: Response, next: Function) => {
+  const token = req.headers['x-access-token'] as string;
+  if (!token) {
+    return res.status(403).json({ message: 'No token provided' });
+  }
+  jwt.verify(token, SECRET, (error: any, decoded: any) => {
+    if (error) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    (req as any).id = decoded.id;
+    next();
+    next()
+  })
+}
+
+
+export const getAll = async (_req: Request, res: Response, _verifyToken: any) => {
   UserModel.find({}).select('_id username email')
     .then((users: any) => {
       res.status(200).json(users)
@@ -35,7 +52,7 @@ export const loginUser =async (_req: Request, res: Response) => {
     const token = jwt.sign({
       id: _req.body._id, username: _req.body.username
     }, process.env.JWT_SECRECT || 'default_secret',
-      { expiresIn: '1h' });
+      { expiresIn: '10s' });
     res.status(200).json({
       message: 'Login succesfull',
       token,
@@ -103,6 +120,7 @@ export const remove = async (req: Request, res: Response) => {
     if (!deletedUser) {
       return res.status(404).json('user not found')
     }
+    return res.json(deletedUser);
 
   }
   catch (error) {
@@ -120,3 +138,4 @@ export default {
   remove,
   loginUser
 };
+

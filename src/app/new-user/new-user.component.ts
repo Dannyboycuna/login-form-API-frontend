@@ -4,9 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterModule } from '@angular/router';
 import { ServicesService } from '../services.service';
 //import { ServicesService } from '../services.service';
-import { User, UserModel } from '../../API/src/models/user.model';
 import { response } from 'express';
 import { HttpClientModule } from '@angular/common/http';
+import { User } from '../core/models/user';
 
 
 @Component({

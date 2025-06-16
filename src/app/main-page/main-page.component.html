@@ -1,4 +1,34 @@
 <section class="workSpace">
+
+  <h3>Sign in</h3>
+  <div class="updateForm" *ngIf="showForm">
+<!-- //////////////// update /////////////////// -->
+    <h1>update</h1>
+    <form [formGroup]="form" >
+      <!----------------username---------------->
+      <p class="error">@if (form.get('username')?.hasError('required') && form.get('username')?.touched) {Enter username.}
+      </p>
+      <p class='error'>@if (form.get('username')?.hasError('minlength') && form.get('username')?.touched) {Username must have at least 3 letters!} </p>
+      <input type="text" placeholder="username" formControlName="username">
+
+      <!------------------Email--------------------->
+      <p class="error">@if (form.get('email')?.hasError('required') && form.get('email')?.touched) {Please, enter
+        email.}
+      </p>
+      <p class="error">@if (form.get('email')?.hasError('email') && form.get('email')?.touched) {Invalid email} </p>
+      <input type="email" id="email" placeholder="email" formControlName="email">
+
+      <p>
+      <button class="optionButton" >delete</button>
+      <button class="optionButton" (click)="cancelOption()">cancel</button>
+      </p>
+
+    </form>
+  </div>
+
+
+
+
   <h1>Hello</h1>
 
   <table border="2">
@@ -7,21 +37,28 @@
         <th>Nr</th>
         <th>Username</th>
         <th>email</th>
-        <th>Option</th>
+        <th>id </th>
+        <th>options</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of getUsers;index as index">
+      <tr *ngFor="let user of users;index as index">
         <td id="index">{{index+1}} </td>
         <td>{{user.username}}</td>
-        <td>{{user.email}}</td>      
-        <td id="option"><button (click)="optionDelete(index)">Options</button></td>
+        <td>{{user.email}}</td>
+        <td>{{user._id}} </td>
+        <td>
+          <div id="option"><button (click)="optionDelete(user._id!, index)">delete</button></div>
+          <div><button (click)="optionUpdate(index)">options</button></div>
+          <div><button (click)="updateOne(user._id!, index)">update</button></div>
+        </td>
+
       </tr>
     </tbody>
   </table>
 
 
 
-  
+
 
 </section>
