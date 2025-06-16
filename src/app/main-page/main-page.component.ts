@@ -16,8 +16,12 @@ export class MainPageComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     username: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
+
+  showOptionButton: boolean = true;
+  showOption: boolean = false;
   showForm: boolean = false;
   index: number = -1;
+  activeUserIndex: number | null = null;
 
   /// update form
 
@@ -52,23 +56,27 @@ user!: string;
   })
 }
 
- optionUpdate(index:number) {
+  optionUpdate(index: number) {
+    this.activeUserIndex=index
+    this.showOptionButton = false;
     this.showForm = true;
-    alert(this.users[index]._id)
-
     this.form.setValue({
       username: this.users[index].username,
       email: this.users[index].email
     })
   }
-  cancelOption() {
+  cancelOption(id: string, index: number) {
+    this.activeUserIndex = null;
+    this.showOptionButton = true;
     this.showForm = false;
+
   }
- 
   updateOne(id: string, index:number) {
     if (this.form.valid) {
       this.service.updateUser(this.users[index]._id!, this.form.value as User).subscribe({
-        next: () => alert('User updated successfully!'),
+        next: () => alert(`User ${this.users[index].username} updated successfully!`)
+        
+        ,
         error: (err) => console.error(err)
       });
     }

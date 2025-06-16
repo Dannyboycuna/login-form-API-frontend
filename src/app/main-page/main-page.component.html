@@ -18,18 +18,9 @@
       <p class="error">@if (form.get('email')?.hasError('email') && form.get('email')?.touched) {Invalid email} </p>
       <input type="email" id="email" placeholder="email" formControlName="email">
 
-      <p>
-      <button class="optionButton" >delete</button>
-      <button class="optionButton" (click)="cancelOption()">cancel</button>
-      </p>
-
     </form>
   </div>
 
-
-
-
-  <h1>Hello</h1>
 
   <table border="2">
     <thead>
@@ -48,9 +39,11 @@
         <td>{{user.email}}</td>
         <td>{{user._id}} </td>
         <td>
-          <div id="option"><button (click)="optionDelete(user._id!, index)">delete</button></div>
-          <div><button (click)="optionUpdate(index)">options</button></div>
-          <div><button (click)="updateOne(user._id!, index)">update</button></div>
+          <div><button class="optionButton" (click)="optionUpdate(index)" *ngIf="showOptionButton">options</button></div>
+          <div *ngIf="activeUserIndex===index"><div id="option"><button class="optionButton" (click)="optionDelete(user._id!, index)">delete</button></div>
+          <div><button class="optionButton" (click)="updateOne(user._id!, index)">update</button></div> 
+          <div><button class="optionButton" (click)="cancelOption(user._id!, index)">Cancel</button></div>
+        </div>
         </td>
 
       </tr>

@@ -65,14 +65,23 @@ td {
   text-align: center;
 }
 
-.options {
-  color: aquamarine;
+.options, .optionButton {
+  color: black;
+  background-color: white;
+  margin: 0 auto;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
 }
 
-.options button {
+.options button,.optionButton:hover {
   margin-right: 5px;
   cursor: pointer;
+  background-color: black;
+  color: white;
 } 
+
 
 ////////////////// updateForm///////////////////////////////// 
 
@@ -114,3 +123,4 @@ background-color: aqua;
     background-color: red;
   }
 }
+
